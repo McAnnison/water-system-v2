@@ -1,0 +1,1 @@
+This directory contains the SDK Alkaline Water React client. Run it from the repository root with `npm run dev:web`.

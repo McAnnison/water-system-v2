@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+
+@layer base {
+  :root {
+    color: #102f4c;
+    background: #f4f8fb;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+  body { min-width: 320px; min-height: 100vh; }
+  button, input { -webkit-tap-highlight-color: transparent; }
+  button { cursor: pointer; }
+}
+
+@layer components {
+  .primary-button {
+    display: flex;
+    height: 3rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.75rem;
+    background: #0868bd;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(8, 104, 189, 0.2);
+    transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  }
+  .primary-button:hover { background: #07589f; box-shadow: 0 10px 24px rgba(8, 104, 189, 0.25); }
+  .primary-button:active { transform: translateY(1px); }
+  .primary-button:focus-visible { outline: 3px solid rgba(18, 150, 199, 0.3); outline-offset: 2px; }
+}
+
+.water-glow { position: absolute; border-radius: 9999px; filter: blur(2px); pointer-events: none; }
+.water-glow-one { width: 480px; height: 480px; right: -210px; top: 18%; background: radial-gradient(circle at 35% 35%, rgba(40, 199, 213, 0.22), rgba(10, 63, 105, 0.04) 68%); border: 1px solid rgba(105, 218, 228, 0.08); }
+.water-glow-two { width: 360px; height: 360px; left: -190px; bottom: -60px; background: radial-gradient(circle at 65% 35%, rgba(22, 151, 185, 0.16), rgba(10, 63, 105, 0.02) 70%); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}

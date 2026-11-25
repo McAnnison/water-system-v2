@@ -1,22 +1,24 @@
-# SDK Alkaline Water Management System
+# SDK Alkaline Water Digital Operations Platform
 
-A role-aware operations platform for production, inventory, dispatch, workforce activity, and management reporting at SDK Alkaline Water Limited.
+A role-aware operations platform for production, inventory, dispatch, finance, and management reporting at SDK Alkaline Water Limited.
 
-> Status: discovery and engineering foundation. Requirements are being validated; no production functionality is implemented yet.
+> Delivery status: engineering foundation and authentication interface scaffold. Authentication is currently frontend-only; production sign-in, invitation validation, persistence, and operational APIs are not implemented.
 
-## Objectives
-- Capture production and stock activity accurately.
-- Trace stock movement through dispatch and distribution.
-- Define accountable role-based workflows.
-- Provide reliable operational visibility and auditability.
+## Architecture
 
-## Architecture direction
-Start with a modular monolith: one backend organized around business modules, a separate React web client, and PostgreSQL. Proposed stack: React + TypeScript, Node.js + TypeScript + Express, PostgreSQL, Prisma, REST/OpenAPI, automated tests, GitHub Actions, and Docker. Validate choices against requirements before implementation.
+The repository is organized as a modular monolith with a separate React web client, Node.js/TypeScript API, and shared-contracts package.
+
+- Web: React, TypeScript, Vite, Tailwind CSS
+- API: Node.js and TypeScript
+- Shared: transport types and validation contracts shared across the web and API
+- Planned persistence: PostgreSQL with Prisma, subject to the approved data model
+- API style: REST with documented contracts
 
 ## Repository layout
-- `apps/api` — backend (planned)
-- `apps/web` — web client (planned)
-- `packages/shared` — shared contracts (planned)
+
+- `apps/web` — React/Vite web client
+- `apps/api` — Node.js API scaffold
+- `packages/shared` — shared transport contracts (placeholder)
 - `docs/product` — charter, vision, scope
 - `docs/requirements` — SRS, workflows, rules, permissions
 - `docs/architecture` — system design and ADRs
@@ -25,19 +27,26 @@ Start with a modular monolith: one backend organized around business modules, a 
 - `docs/delivery` — roadmap and quality plan
 - `infrastructure` — local and deployment configuration
 
-## Read first
-1. [Project charter](docs/product/project-charter.md)
-2. [Product vision and scope](docs/product/vision-and-scope.md)
-3. [Requirements discovery plan](docs/requirements/discovery-plan.md)
-4. [Architecture overview](docs/architecture/overview.md)
-5. [Contributing guide](CONTRIBUTING.md)
+## Prerequisites
 
-Do not implement business rules based on assumptions. Validate workflows with process owners first.
+- Node.js 22.12 or newer
+- npm 10 or newer
 
-## Delivery principles
+## Getting started
+
+Install dependencies at the repository root with `npm install`.
+
+Run the web client with `npm run dev:web` and the API in a separate terminal with `npm run dev:api`.
+
+The API exposes `GET http://localhost:4000/health`.
+
+Build both workspaces with `npm run build`; use `npm run build:web` or `npm run build:api` for individual builds.
+
+## Engineering principles
+
 - Requirements and acceptance criteria precede implementation.
 - Every change is linked to an issue and delivered through a pull request.
 - Protect `main`; no direct feature commits.
-- Enforce authorization on the server.
+- Enforce authentication and authorization on the server.
 - Use explicit database migrations and test critical workflows.
 - Never commit credentials or real customer/employee data.
